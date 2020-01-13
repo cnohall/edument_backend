@@ -8,12 +8,12 @@ router.route('/').get((req, res) => {
         .catch(err => res.status(400).json("Error: " + err));
 });
 
-router.post('/paths/:searchword',(req, res) => {
-    const searchword = req.params.searchword;
-    Path.find({path: { '$regex' : searchword, '$options' : 'i' } })
-        .then(paths => res.json(paths))
-        .catch(err => res.status(400).json("Error: " + err));
-});
+// router.get('/paths',(req, res) => {
+//     const searchword = req.params.searchword;
+//     Path.find({path: { '$regex' : searchword, '$options' : 'i' } })
+//         .then(paths => res.json(paths))
+//         .catch(err => res.status(400).json("Error: " + err));
+// });
 
 router.post('/add', (req, res) => { 
     const path = req.body.path;
@@ -31,6 +31,7 @@ router.post('/delete', (req, res) => {
     Path.findOne({path})
     .then(response => {
         console.log("We found this path: " + response)
+        console.log(response)
         Path.deleteOne( {path}).then(x => {
             console.log(x);
             return res.send("You successfully removed the path")
