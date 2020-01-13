@@ -32,11 +32,11 @@ router.post('/delete', (req, res) => {
     .then(response => {
         console.log("We found this path: " + response)
         console.log(response)
-        Path.deleteOne( {path}).then(x => {
-            console.log(x);
-            return res.send("You successfully removed the path")
+        Path.deleteOne( {path}, function(err, obj) {
+            if (err) throw err;
+            console.log("1 document deleted");
+            console.log(obj);
           })
-          .catch(err => res.status(400).json("Error: " + err));
     })
     .catch(err => res.status(400).json("Error: " + err));
 });
