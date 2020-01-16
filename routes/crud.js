@@ -30,16 +30,17 @@ router.post('/add', (req, res) => {
 
 router.post('/delete', (req, res) => { 
     const path = req.body.path;
-    console.log(req.body)
-    console.log(path)
+    // console.log(req.body)
+    // console.log(path)
     Path.find({path: path}, function(err, obj) {
         if (err) throw err;
         else {
             // console.log(obj)
-            Path.delete( {path}, function(err, obj) {
+            Path.deleteMany( {path}, function(err, obj) {
                 if (err) throw err;
                 console.log("deletion completed");
-                // console.log(obj);
+                res.status(200).json({message: "Deletion success"})
+
             })
         }
       });
