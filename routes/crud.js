@@ -29,7 +29,7 @@ router.post('/add', (req, res) => {
         .catch(err => res.status(400).json("Error: " + err));
 });
 
-router.post('/delete', (req, res) => { 
+router.post('/delete', cors(), (req, res) => { 
     const path = req.body.path;
     console.log(req.body)
     console.log(path)
