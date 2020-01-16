@@ -35,7 +35,7 @@ router.post('/delete', (req, res) => {
     Path.find({path: path}, function(err, obj) {
         if (err) throw err;
         else {
-            // console.log(obj)
+            console.log(obj)
             Path.deleteMany( {path}, function(err, obj) {
                 if (err) throw err;
                 console.log("deletion completed");
