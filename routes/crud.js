@@ -28,17 +28,19 @@ router.post('/add', (req, res) => {
 
 router.post('/delete', (req, res) => { 
     const path = req.body.path;
-    Path.findOne({path})
-    .then(response => {
-        console.log("We found this path: " + response)
-        console.log(response)
-        Path.deleteOne( {path}, function(err, obj) {
-            if (err) throw err;
-            console.log("1 document deleted");
-            console.log(obj);
-          })
-    })
-    .catch(err => res.status(400).json("Error: " + err));
+    console.log(req.body)
+    console.log(path)
+    Path.find({path: path}, function(err, obj) {
+        if (err) throw err;
+        else {
+            // console.log(obj)
+            Path.delete( {path}, function(err, obj) {
+                if (err) throw err;
+                console.log("deletion completed");
+                // console.log(obj);
+            })
+        }
+      });
 });
 
 router.post('/update', (req, res) => { 

@@ -8,6 +8,14 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+var bodyParser = require('body-parser');
+
+// configure the app to use bodyParser()
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
 const password = process.env.ATLAS_PASSWORD;
 const ATLAS_URI = "mongodb+srv://edument:" + password+ "@cluster0-07rrr.mongodb.net/test?retryWrites=true&w=majority";
 
