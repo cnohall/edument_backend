@@ -1,6 +1,9 @@
 const ObjectId = require('mongodb').ObjectID;
 const router = require('express').Router();
 let Path = require('../models/path.model');
+const cors = require ('cors')
+
+router.use(cors())
 
 router.route('/').get((req, res) => {
     Path.find()
