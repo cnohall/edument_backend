@@ -39,4 +39,4 @@ app.listen(port, () => {
 
 const router = require('./routes/crud.js');
 
-app.use('/', router);
+app.use('/path', router);
