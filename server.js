@@ -7,23 +7,31 @@ const app = express ();
 const port = process.env.PORT || 5000;
 
 app.use(cors());
+
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*');
+//     res.header('Access-Control-Allow-Headers', '*');
+//     if(req.method === 'OPTIONS') {
+//         res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+//         return res.status(200).json({});
+//     }
+// });
+
+
 app.use(express.json());
 
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', '*');
-});
 
-// var bodyParser = require('body-parser');
 
-// // configure the app to use bodyParser()
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// }));
-// // app.use(express.json());
-// // app.use(bodyParser.json());
+var bodyParser = require('body-parser');
 
-// app.use(cors());
+// configure the app to use bodyParser()
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(express.json());
+app.use(bodyParser.json());
+
+app.use(cors());
 
 
 const password = process.env.ATLAS_PASSWORD;

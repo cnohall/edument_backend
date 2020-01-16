@@ -3,9 +3,11 @@ const router = require('express').Router();
 const Path = require('../models/path.model');
 
 router.route('/').get((req, res) => {
+    
     Path.find()
         .then(path => res.json(path))
         .catch(err => res.status(400).json("Error: " + err));
+    // res.status(201).json({message: "You have now fetched the data"});
 });
 
 // router.get('/paths',(req, res) => {
