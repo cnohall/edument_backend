@@ -1,9 +1,7 @@
 const ObjectId = require('mongodb').ObjectID;
 const router = require('express').Router();
-let Path = require('../models/path.model');
+const Path = require('../models/path.model');
 const cors = require ('cors')
-
-router.use(cors())
 
 router.route('/').get((req, res) => {
     Path.find()
@@ -29,7 +27,7 @@ router.post('/add', (req, res) => {
         .catch(err => res.status(400).json("Error: " + err));
 });
 
-router.post('/delete', cors(), (req, res) => { 
+router.post('/delete', (req, res) => { 
     const path = req.body.path;
     console.log(req.body)
     console.log(path)
