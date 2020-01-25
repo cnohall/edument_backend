@@ -10,12 +10,26 @@ router.route('/').get((req, res) => {
     // res.status(201).json({message: "You have now fetched the data"});
 });
 
-// router.get('/paths',(req, res) => {
-//     const searchword = req.params.searchword;
+// router.get('/:path', (req, res) => {
+//     const searchword = req.params;
+//     console.log(req.params)
 //     Path.find({path: { '$regex' : searchword, '$options' : 'i' } })
 //         .then(paths => res.json(paths))
 //         .catch(err => res.status(400).json("Error: " + err));
 // });
+
+router.get('/find/*', (req, res) => { 
+    const path = req.params[0];
+    // console.log(path)
+    try {
+        Path.find( {path: { '$regex' : path, '$options' : 'i' }}, function(err, obj) {
+            // console.log("hejsan " + obj );
+            res.json(obj)
+        })
+    } catch (e) {
+        console.log(e)
+    }
+});
 
 router.post('/add', (req, res) => { 
     const path = req.body.path;
@@ -46,7 +60,8 @@ router.post('/delete', (req, res) => {
     }
 });
 
-router.post('/update', (req, res) => { 
+router.get('/update/*', (req, res) => { 
+    console.log("updating...")
     // const path = req.body.path;
     // const newPath = new Path({
     //     path,
