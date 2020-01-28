@@ -29,7 +29,7 @@ router.get('/find/*', (req, res) => {
     }
 });
 
-router.post('/post/update', (req, res) => { 
+router.post('/update', (req, res) => { 
     const data = req.body.data;
     try {
         Path.update(
