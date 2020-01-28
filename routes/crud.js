@@ -50,7 +50,7 @@ router.post('/add', (req, res) => {
 router.post('/delete', (req, res) => { 
     const data = req.body.data;
     try {
-        Path.delete(
+        Path.deleteMany(
             {_id: data._id},
             function(err, obj) {
                 res.json(obj)
