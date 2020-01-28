@@ -20,16 +20,29 @@ router.route('/').get((req, res) => {
 
 router.get('/find/*', (req, res) => { 
     const path = req.params[0];
-    // console.log(path)
     try {
         Path.find( {path: { '$regex' : path, '$options' : 'i' }}, function(err, obj) {
-            // console.log("hejsan " + obj );
             res.json(obj)
         })
     } catch (e) {
         console.log(e)
     }
 });
+
+router.post('/post/update', (req, res) => { 
+    const data = req.body.data;
+    try {
+        Path.update(
+            {_id: data._id},
+            {$set: {path: data.path}},
+            function(err, obj) {
+                res.json(obj)
+            })            
+    } catch (e) {
+        console.log(e)
+    }
+});
+
 
 router.post('/add', (req, res) => { 
     const path = req.body.path;
