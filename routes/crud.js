@@ -56,18 +56,13 @@ router.post('/add', (req, res) => {
 });
 
 router.post('/delete', (req, res) => { 
-    const path = req.body.path;
+    const data = req.body.data;
     try {
-        Path.find( {"path": path}, function(err, obj) {
-            console.log("found " + obj );
-            try {
-                Path.deleteMany( {path:{ '$regex' : path, '$options' : 'i' } }, function(err, obj) {
-                    res.status(200).json({message: "Deletion success"})
-                })
-            } catch (e) {
-                console.log(e)
-            }
-        })
+        Path.delete(
+            {_id: data._id},
+            function(err, obj) {
+                res.json(obj)
+            })            
     } catch (e) {
         console.log(e)
     }
