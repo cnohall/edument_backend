@@ -10,14 +10,6 @@ router.route('/').get((req, res) => {
     // res.status(201).json({message: "You have now fetched the data"});
 });
 
-// router.get('/:path', (req, res) => {
-//     const searchword = req.params;
-//     console.log(req.params)
-//     Path.find({path: { '$regex' : searchword, '$options' : 'i' } })
-//         .then(paths => res.json(paths))
-//         .catch(err => res.status(400).json("Error: " + err));
-// });
-
 router.get('/find/*', (req, res) => { 
     const path = req.params[0];
     try {
@@ -68,17 +60,6 @@ router.post('/delete', (req, res) => {
     }
 });
 
-router.get('/update/*', (req, res) => { 
-    console.log("updating...")
-    // const path = req.body.path;
-    // const newPath = new Path({
-    //     path,
-    // });
-    // console.log("Update started");
-    // newPath.save()
-    //     .then(() => res.json('Path Updated!'))
-    //     .catch(err => res.status(400).json("Error: " + err));
-});
 
 module.exports = router;
 
